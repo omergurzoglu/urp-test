@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,7 @@ public class Skeleton : Enemy
     private CapsuleCollider _collider;
     private Coroutine _patrolCoroutine,_attackCoroutine;
     private static readonly int Attack = Animator.StringToHash("Attack");
+    [SerializeField]private ParticleSystem _fx;
 
     private void Awake()
     {
@@ -21,6 +23,12 @@ public class Skeleton : Enemy
         _collider = GetComponent<CapsuleCollider>();
         _agent = GetComponent<NavMeshAgent>();
         _patrolCoroutine=StartCoroutine(PatrolCoroutine());
+    }
+
+    private void Start()
+    {
+        SetRigidBodyStates(true);
+        SetColliderStates(false);
     }
 
     public void PlayerFound()
@@ -45,7 +53,7 @@ public class Skeleton : Enemy
             _agent.SetDestination(hit.position);
             SwitchToWalkAnim();
             
-            yield return new WaitUntil(() => !_agent.pathPending && _agent.remainingDistance < 2f);
+            yield return new WaitUntil(() => !_agent.pathPending && _agent.remainingDistance < 2.6f);
             
             SwitchToIdleAnim();
             yield return new WaitForSeconds(7f);
@@ -83,19 +91,54 @@ public class Skeleton : Enemy
             
             _agent.isStopped = true;
             _animator.SetTrigger(Attack);
-            yield return new WaitForSeconds(2.8f);
+            yield return new WaitForSeconds(4f);
             _agent.isStopped = false;
             SwitchToIdleAnim();
-            yield return new WaitForSeconds(0.5f);
-            
+            yield return new WaitForSeconds(1f);
+
         }
     }
     
     public override void TakeDamage()
     {
         base.TakeDamage();
-        Debug.Log("skeleton take damage");
+        _fx.Play();
+        if (Health < 1)
+        {
+            Kill();
+        }
         Debug.Log(Health);
+    }
+
+    private void Kill()
+    {
+        StopCoroutine(_attackCoroutine);
+        _animator.enabled = false;
+        _agent.isStopped = true; 
+        SetRigidBodyStates(false);
+        SetColliderStates(true);
+        Destroy(gameObject,5f);
+    }
+
+    private void SetRigidBodyStates(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (var rigidbody in rigidbodies )
+        {
+            rigidbody.isKinematic = state;
+        }
+
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
+    private void SetColliderStates(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (var collider in colliders )
+        {
+            collider.enabled = state;
+        }
+
+        GetComponent<Collider>().enabled = !state;
     }
 
    

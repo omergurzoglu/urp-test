@@ -29,4 +29,13 @@ public class Combat : MonoBehaviour
          _animator.SetBool(AttackBool,false);
       }
    }
+
+   public void StartRootMotion()
+   {
+      _animator.applyRootMotion = true;
+   }
+   public void EndRootMotion()
+   {
+      _animator.applyRootMotion = false;
+   }
 }

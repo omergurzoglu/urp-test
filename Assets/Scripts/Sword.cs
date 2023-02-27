@@ -18,21 +18,17 @@ public class Sword : MonoBehaviour
 
     private void Update()
     {
-        if (animator.GetBool(Attack))
-        {
-            _boxCollider.isTrigger = true;
-        }
-        else
-        {
-            _boxCollider.isTrigger = false;
-        }
+       
+        _boxCollider.isTrigger = animator.GetBool(Attack);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<ITakeDamage>(out var hit))
-        { hit.TakeDamage();
+        
+        if (animator.GetBool(Attack) && other.TryGetComponent<ITakeDamage>(out var hit))
+        {
+            hit.TakeDamage();
         }
         
     }

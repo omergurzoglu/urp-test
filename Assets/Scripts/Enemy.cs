@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, ITakeDamage
 {
     protected GameObject Antagonist;
-    protected int Health=10;
+    protected int Health=4;
     public bool Alerted=false;
 
     private void OnEnable()
@@ -20,7 +20,6 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
 
     private void GetPlayer(GameObject player)
     {
-        Debug.Log("antagonist position injected");
         Antagonist = player;
     }
 
