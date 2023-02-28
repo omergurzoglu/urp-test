@@ -29,6 +29,9 @@
         },
         {
             "m_Id": "dce12787a01d4ff4969c4300740a3346"
+        },
+        {
+            "m_Id": "828de2b7764d4851b09296d7db82013a"
         }
     ],
     "m_Keywords": [
@@ -2802,6 +2805,35 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "828de2b7764d4851b09296d7db82013a",
+    "m_Guid": {
+        "m_GuidSerialized": "5126e809-b1ca-42fd-9cfa-bf07156ec434"
+    },
+    "m_Name": "Emission",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Emission",
+    "m_DefaultReferenceName": "_Emission",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.AddNode",
     "m_ObjectId": "87a12429fecf4169b6474f9fb7fc7f41",
     "m_Group": {
@@ -2921,6 +2953,9 @@
         },
         {
             "m_Id": "dce12787a01d4ff4969c4300740a3346"
+        },
+        {
+            "m_Id": "828de2b7764d4851b09296d7db82013a"
         }
     ]
 }

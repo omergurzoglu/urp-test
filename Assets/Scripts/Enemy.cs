@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, ITakeDamage
 {
     protected GameObject Antagonist;
-    protected int Health=4;
+    protected int Health=5;
     public bool Alerted=false;
 
     private void OnEnable()

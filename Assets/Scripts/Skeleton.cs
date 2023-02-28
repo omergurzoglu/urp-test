@@ -33,7 +33,7 @@ public class Skeleton : Enemy
 
     public void PlayerFound()
     {
-        Debug.Log("check");
+        
         StopCoroutine(_patrolCoroutine);
         _agent.ResetPath();
         _attackCoroutine = StartCoroutine(AttackCoroutine());
@@ -45,10 +45,10 @@ public class Skeleton : Enemy
     {
         while (true)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * 25;
+            Vector3 randomDirection = Random.insideUnitSphere * 5;
             randomDirection += transform.position;
             NavMeshHit hit;
-            NavMesh.SamplePosition(randomDirection, out hit, 25, NavMesh.AllAreas);
+            NavMesh.SamplePosition(randomDirection, out hit, 5, NavMesh.AllAreas);
             
             _agent.SetDestination(hit.position);
             SwitchToWalkAnim();
@@ -95,6 +95,7 @@ public class Skeleton : Enemy
             _agent.isStopped = false;
             SwitchToIdleAnim();
             yield return new WaitForSeconds(1f);
+            
 
         }
     }
@@ -107,7 +108,6 @@ public class Skeleton : Enemy
         {
             Kill();
         }
-        Debug.Log(Health);
     }
 
     private void Kill()

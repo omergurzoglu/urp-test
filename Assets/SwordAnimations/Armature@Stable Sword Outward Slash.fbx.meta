@@ -42,7 +42,7 @@ ModelImporter:
       name: RightSwingAnim
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
+      firstFrame: 7.7
       lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
